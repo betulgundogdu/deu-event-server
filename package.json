@@ -1,0 +1,43 @@
+{
+  "name": "deu-event-server",
+  "version": "1.0.0",
+  "description": "DEU Event",
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon src/index.js --exec babel-node --presets es2015,stage-0",
+    "build": "NODE_ENV=production npm run clean:dist && babel src -d dist",
+    "clean:dist": "shx rm -rf ./dist",
+    "start": "NODE_ENV=production npm run build && node dist/index.js",
+    "test": "NODE_ENV=test mocha --compilers js:babel-register --require babel-polyfill --exit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "http-status": "^1.0.1",
+    "joi": "^13.1.1",
+    "lodash": "^4.17.4",
+    "mongoose": "^5.0.2",
+    "morgan": "^1.9.0"
+  },
+  "keywords": [
+    "Node.js",
+    "Expressjs",
+    "node",
+    "express",
+    "es6"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.0",
+    "nodemon": "^1.14.11",
+    "shx": "^0.2.2",
+    "supertest": "^3.0.0"
+  }
+}
