@@ -1,16 +1,13 @@
-import { NodeMailer } from 'express';
+import NodeMailer from 'nodemailer';
 
 const sendEmail = async (email, name) => {
   try {
     const transporter = NodeMailer.createTransport({
-      host: process.env.HOST,
-      port: 587,
-      secure: true,
       auth: {
         user: process.env.USER,
         pass: process.env.PASS,
       },
-      service: 'Gmail'
+      service: 'gmail'
     });
 
     await transporter.sendMail({
