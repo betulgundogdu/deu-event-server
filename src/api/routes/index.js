@@ -14,7 +14,7 @@ router.post("/users/login", async (req, res) => {
     try {
         const user = await User.findOne({
             email: req.body.email,
-            password: req.body.password
+            password: bcrypt.hashSync(req.body.password, 8)
         })
         res.send(user);
     } catch (error) {

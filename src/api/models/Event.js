@@ -8,12 +8,12 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
+    start_date: {
         type: Date,
         require: true
     },
-    duration: {
-        type: Timestamp,
+    end_date: {
+        type: Date,
         require: true
     },
     location: {
@@ -30,10 +30,12 @@ const eventSchema = new Schema({
     },
     organizer: {
         type: Schema.Types.ObjectId,
+        ref: "user",
         require: true
     },
     attendees: {
         type: [Schema.Types.ObjectId],
+        ref: "user",
         require: false
     }
 });
