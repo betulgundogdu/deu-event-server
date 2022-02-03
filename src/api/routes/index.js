@@ -92,7 +92,7 @@ router.post("/signup", async (req, res) => {
   
       res.send("An Email sent to your account please verify");
     } catch (error) {
-      res.status(400).send("An error occured");
+      res.status(400).send("An error occured" + error);
     }
   });
   
