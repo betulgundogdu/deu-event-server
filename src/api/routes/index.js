@@ -122,7 +122,7 @@ router.post('/events', async (req, res) => {
     try {
         const body = {
             ...req.body,
-            organization: mongoose.Types.ObjectId(req.body.organization)
+            organizer: mongoose.Types.ObjectId(req.body.organizer)
         };
 
         console.log(body);
