@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { User, validate } from '../models/User';
 import Event from '../models/Event';
+import Token from '../models/Token';
 import mongoose  from 'mongoose';
 import sendEmail from '../utils/email';
 import crypto from 'crypto';
