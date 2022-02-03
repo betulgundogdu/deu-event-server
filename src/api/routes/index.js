@@ -17,7 +17,7 @@ router.post("/users/login", async (req, res) => {
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 8)
         })
-        res.send(user);
+        res.send('sdsdasd');
     } catch (error) {
         res.send(error);
     }
