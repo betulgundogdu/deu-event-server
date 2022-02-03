@@ -20,10 +20,10 @@ const sendEmail = async (email, name, message) => {
       <a href=${message}> Click here</a>
       </div>`,
     });
-    return 'ok';
+    return true;
   } catch (error) {
     console.log("Email not sent");
-    return error;
+    return false;
   }
 };
 

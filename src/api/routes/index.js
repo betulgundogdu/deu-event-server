@@ -91,7 +91,11 @@ router.post("/signup", async (req, res) => {
       const message = `${process.env.BASE_URL}user/verify/${user.id}/${token.token}`;
       const emailResult = await sendEmail(user.email, user.name, message);
   
-      res.send(emailResult);
+      if (emailResult) {
+        res.status(200).send(user);
+      } else {
+        res.send(400).send({error: true});
+      }
     } catch (error) {
       res.status(400).send("An error occured" + error);
     }
