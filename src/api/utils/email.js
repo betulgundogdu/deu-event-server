@@ -10,6 +10,7 @@ const sendEmail = async (email, name) => {
         user: process.env.USER,
         pass: process.env.PASS,
       },
+      service: 'Gmail'
     });
 
     await transporter.sendMail({
