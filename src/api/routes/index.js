@@ -115,7 +115,7 @@ router.get("/user/verify/:id/:token", async (req, res) => {
       await User.updateOne({_id: user._id }, { verified: true });
       await Token.findByIdAndRemove(token._id);
   
-      res.send("Email verified sucessfully");
+      res.redirect('https://deuevent.netlify.app/');
     } catch (error) {
       res.status(400).send(error);
     }
