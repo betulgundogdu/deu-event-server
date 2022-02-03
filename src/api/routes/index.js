@@ -47,7 +47,7 @@ router.post("/users/validation", async (req, res) => {
     try {
         const user = await User.findOneAndUpdate(
             { email: req.body.email },
-            { organizer: req.body.organizer },
+            { is_organizer: req.body.is_organizer },
             { new: true}
         );
         res.send(user);
@@ -65,7 +65,7 @@ router.delete("/users/:id", async (req, res) => {
   }
 });
 
-router.post("/user", async (req, res) => {
+router.post("/signup", async (req, res) => {
     try {
       const { error } = validate(req.body);
       if (error) return res.status(400).send(error.details[0].message);
@@ -78,7 +78,7 @@ router.post("/user", async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
-        organizer: false,
+        is_organizer: false,
         verified: false
       }).save();
   

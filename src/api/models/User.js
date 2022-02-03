@@ -16,7 +16,7 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
-    organizer: {
+    is_organizer: {
         type: Boolean,
         require: true
     },
