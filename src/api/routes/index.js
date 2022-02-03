@@ -117,7 +117,7 @@ router.get("/user/verify/:id/:token", async (req, res) => {
   
       res.send("Email verified sucessfully");
     } catch (error) {
-      res.status(400).send("An error occured");
+      res.status(400).send(error);
     }
   });
 
