@@ -80,7 +80,7 @@ router.post("/signup", async (req, res) => {
   
       let user = await User.findOne({ email: req.body.email });
       if (user)
-        return res.status(400).send("User with given email already exist!");
+        return res.send({error:true, message:'User already exist.'});
   
       user = await new User({
         name: req.body.name,
@@ -99,25 +99,25 @@ router.post("/signup", async (req, res) => {
       const emailResult = await sendEmail(user.email, user.name, message);
   
       if (emailResult) {
-        res.status(200).send(user);
+        res.send({success: true, message: 'Verification email has been sent. Please verify your account'});
       } else {
-        res.status(400).send({error: true});
+        res.send({error: true, message: 'Account does not verify'});
       }
     } catch (error) {
-      res.status(400).send("An error occured" + error);
+      res.send({error: true, message: 'Error occured'});
     }
   });
   
 router.get("/user/verify/:id/:token", async (req, res) => {
     try {
       const user = await User.findOne({ _id: req.params.id });
-      if (!user) return res.status(400).send("Invalid link");
+      if (!user) return res.send({error:true, message:"Invalid link"});
   
       const token = await Token.findOne({
         userId: user._id,
         token: req.params.token,
       });
-      if (!token) return res.status(400).send("Invalid link");
+      if (!token) return res.send({error: true, message:"Invalid link"});
   
       await User.updateOne({_id: user._id }, { verified: true });
       await Token.findByIdAndRemove(token._id);
