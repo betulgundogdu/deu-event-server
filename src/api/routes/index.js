@@ -78,7 +78,8 @@ router.post("/user", async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
-        organizer: false
+        organizer: false,
+        verified: false
       }).save();
   
       let token = await new Token({
