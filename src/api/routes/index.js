@@ -13,11 +13,18 @@ router.get('/status', (req, res) => res.send('OK'));
 
 router.post("/users/login", async (req, res) => {
     try {
+
+      const userPwd = req.body.password;
         const user = await User.findOne({
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8)
-        })
-        res.send(bcrypt.hashSync(req.body.password, 8));
+        });
+        
+        const match = await bcrypt.compare(userPwd, user.password);
+        if(match) {
+          res.send(user);
+        } else {
+          res.send({error: true});
+        }
     } catch (error) {
         res.send(error);
     }
