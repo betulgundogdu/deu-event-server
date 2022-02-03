@@ -33,7 +33,7 @@ const validate = (user) => {
     const schema = Joi.object({
       name: Joi.string().min(3).max(255).required(),
       email: Joi.string().email().required(),
-      password: Joi.string.password().required(),
+      password: Joi.string().required(),
       is_organizer: Joi.boolean(),
       verified: Joi.boolean()
     });
