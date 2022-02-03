@@ -13,7 +13,7 @@ const eventSchema = new Schema({
         require: true
     },
     duration: {
-        type: int,
+        type: Timestamp,
         require: true
     },
     location: {
