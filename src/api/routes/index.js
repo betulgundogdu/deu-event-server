@@ -94,7 +94,7 @@ router.post("/signup", async (req, res) => {
       if (emailResult) {
         res.status(200).send(user);
       } else {
-        res.send(400).send({error: true});
+        res.status(400).send({error: true});
       }
     } catch (error) {
       res.status(400).send("An error occured" + error);
