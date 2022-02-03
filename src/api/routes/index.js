@@ -3,8 +3,8 @@ import { User, validate } from '../models/User';
 import Event from '../models/Event';
 import mongoose  from 'mongoose';
 import sendEmail from '../utils/email';
-import { crypto } from 'crypto';
-import { bcrypt } from 'bcryptjs';
+import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 
 const router = Router();
 
