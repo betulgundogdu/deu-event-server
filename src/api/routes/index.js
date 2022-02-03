@@ -89,9 +89,9 @@ router.post("/signup", async (req, res) => {
       }).save();
   
       const message = `${process.env.BASE_URL}/user/verify/${user.id}/${token.token}`;
-      await sendEmail(user.email, user.name, message);
+      const emailResult = await sendEmail(user.email, user.name, message);
   
-      res.send("An Email sent to your account please verify");
+      res.send(emailResult);
     } catch (error) {
       res.status(400).send("An error occured" + error);
     }
