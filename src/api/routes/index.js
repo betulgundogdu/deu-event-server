@@ -88,7 +88,7 @@ router.post("/signup", async (req, res) => {
         token: crypto.randomBytes(32).toString("hex"),
       }).save();
   
-      const message = `${process.env.BASE_URL}/user/verify/${user.id}/${token.token}`;
+      const message = `${process.env.BASE_URL}user/verify/${user.id}/${token.token}`;
       const emailResult = await sendEmail(user.email, user.name, message);
   
       res.send(emailResult);
