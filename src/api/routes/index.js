@@ -67,9 +67,6 @@ router.delete("/users/:id", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
     try {
-      const { error } = validate(req.body);
-      if (error) return res.status(400).send(error.details[0].message);
-  
       let user = await User.findOne({ email: req.body.email });
       if (user)
         return res.status(400).send("User with given email already exist!");
@@ -112,7 +109,7 @@ router.get("/user/verify/:id/:token", async (req, res) => {
   
       res.send("Email verified sucessfully");
     } catch (error) {
-      res.status(400).send("An error occured");
+      res.status(400).send("An error occured" + error);
     }
   });
 
