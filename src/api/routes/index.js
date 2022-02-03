@@ -26,7 +26,12 @@ router.post("/users/login", async (req, res) => {
         const match = await bcrypt.compare(userPwd, user.password);
         
         if(match) {
+          if(user.verified) {
           res.send(user);
+          }
+          else {
+            res.send({error: true, message: 'Please verify your account!'});
+          }
         } else {
           res.send({error: true, message:'User not found!'});
         }
