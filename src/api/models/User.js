@@ -34,9 +34,9 @@ const validate = (user) => {
       email: Joi.string().email().required(),
     });
     return schema.validate(user);
-  };
+};
 
-  module.exports = {
+export { 
     User,
     validate,
-  };
+};
