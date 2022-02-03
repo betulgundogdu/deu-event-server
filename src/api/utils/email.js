@@ -1,6 +1,6 @@
 import NodeMailer from 'nodemailer';
 
-const sendEmail = async (email, name) => {
+const sendEmail = async (email, name, message) => {
   try {
     const transporter = NodeMailer.createTransport({
       auth: {
