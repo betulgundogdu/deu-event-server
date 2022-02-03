@@ -7,18 +7,36 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        require: true,
+        unique: true
+    },
     password: {
         type: String,
         require: true
     },
-    email: {
-        type: String,
-        required: true
+    organizer: {
+        type: Boolean,
+        require: true
     },
-    validation: {
+    verified: {
         type: Boolean,
         require: false
     }
 });
 
-export default mongoose.model('users', userSchema);
+const User = mongoose.model("user", userSchema);
+
+const validate = (user) => {
+    const schema = Joi.object({
+      name: Joi.string().min(3).max(255).required(),
+      email: Joi.string().email().required(),
+    });
+    return schema.validate(user);
+  };
+
+  module.exports = {
+    User,
+    validate,
+  };

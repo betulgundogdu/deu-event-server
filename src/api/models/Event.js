@@ -12,6 +12,10 @@ const eventSchema = new Schema({
         type: Date,
         require: true
     },
+    duration: {
+        type: int,
+        require: true
+    },
     location: {
         type: String,
         required: true
@@ -22,11 +26,15 @@ const eventSchema = new Schema({
     },
     category: {
         type: String,
-        required: false
+        require: false
     },
-    organization: {
+    organizer: {
         type: Schema.Types.ObjectId,
         require: true
+    },
+    attendees: {
+        type: [Schema.Types.ObjectId],
+        require: false
     }
 });
 
