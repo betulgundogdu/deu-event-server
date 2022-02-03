@@ -23,7 +23,7 @@ router.post("/users/login", async (req, res) => {
         if(match) {
           res.send(user);
         } else {
-          res.send({error: true});
+          res.send({error: true, message:'User not found'});
         }
     } catch (error) {
         res.send(error);
