@@ -37,6 +37,12 @@ const eventSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: "user",
         require: false
+    },
+    is_featured: {
+        type: Boolean,
+    },
+    featured_photo: {
+        type: String
     }
 });
 
