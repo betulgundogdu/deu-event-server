@@ -76,6 +76,17 @@ router.post("/users/validation", async (req, res) => {
     }
   });
 
+router.post("/users/delete", async (req, res) => {
+    try {
+        const user = await User.findOneAndDelete(
+            { _id: req.body.id },
+        );
+        res.send(user);
+    } catch (error) {
+        res.send(error);
+    }
+  });
+
 router.delete("/users/:id", async (req, res) => {
   try {
       const user = await User.findByIdAndDelete(req.params.id);
