@@ -76,7 +76,7 @@ router.post("/users/validation", async (req, res) => {
     }
   });
 
-router.post("/users/delete", async (req, res) => {
+router.post("/users/delete/:id", async (req, res) => {
     try {
         const user = await User.findOneAndDelete(
             { _id: req.body.id },
