@@ -76,11 +76,18 @@ router.post("/users/validation", async (req, res) => {
     }
   });
 
-router.post("/users/delete/:id", async (req, res) => {
+  router.delete("/events/:id", async (req, res) => {
     try {
-        const user = await User.findOneAndDelete(
-            { _id: req.body.id },
-        );
+        const event = await Event.findByIdAndDelete(req.params.id);
+        res.send(event);
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+router.delete("/users/:id", async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.body.id);
         res.send(user);
     } catch (error) {
         res.send(error);
