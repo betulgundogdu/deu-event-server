@@ -183,5 +183,17 @@ router.delete("/events/:id", async (req, res) => {
     }
 });
 
+router.post("/events/featured", async (req, res) => {
+  try {
+      const event = await Event.findOneAndUpdate(
+          { _id: req.body.id },
+          { is_featured: req.body.is_featured },
+          { new: true}
+      );
+      res.send(event);
+  } catch (error) {
+      res.send(error);
+  }
+});
 
 module.exports = router;
