@@ -214,7 +214,7 @@ router.get("/events/:event_id/join/:user_id", async (req, res) => {
     console.log(event);
     console.log(newAttendees);
 
-    const updatedEvent = await Event.findByIdAndUpdate(req.body.event_id, { attendees: newAttendees});
+    const updatedEvent = await Event.findByIdAndUpdate(req.params.event_id, { attendees: newAttendees});
 
     res.send(updatedEvent);
   } catch(error) {
