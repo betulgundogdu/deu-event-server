@@ -34,6 +34,6 @@ app.use('/', routes);
 
 
 // listen to requests
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3001);
 
 module.exports = app;

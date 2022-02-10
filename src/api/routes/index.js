@@ -6,7 +6,6 @@ import mongoose  from 'mongoose';
 import sendEmail from '../utils/email';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
-import dot from "dot-object";
 
 const router = Router();
 
@@ -203,20 +202,17 @@ router.delete("/events/:id", async (req, res) => {
   }
 });
 
-router.get("/events/:event_id/join/:user_id", async (req, res) => {
+router.post("/events/:event_id/join/:user_id", async (req, res) => {
   try {
     const user = await User.findById(req.params.user_id);
 
     const event = await Event.findById(req.params.event_id)
 
-    const newAttendees = event.attendees.push(user);
-    
-    console.log(event);
-    console.log(newAttendees);
+    event.attendees.push(user._id);
 
-    const updatedEvent = await Event.findByIdAndUpdate(req.params.event_id, { attendees: newAttendees});
+    await Event.findByIdAndUpdate(req.params.event_id, event);
 
-    res.send(updatedEvent);
+    res.send(event);
   } catch(error) {
     res.send(error)
   }

@@ -17,6 +17,6 @@ mongoose.connection.on('error', (err) => {
 */
 exports.connect = (uri) => {
     // print mongoose logs in dev env
-    mongoose.connect(uri);
+    mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
     return mongoose.connection;
 };
