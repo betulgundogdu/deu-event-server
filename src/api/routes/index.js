@@ -151,7 +151,6 @@ router.get("/user/verify/:id/:token", async (req, res) => {
   });
 
 
-
 router.post('/events', async (req, res) => {
     try {
         const body = {
@@ -206,9 +205,9 @@ router.delete("/events/:id", async (req, res) => {
 
 router.get("/events/:event_id/join/:user_id", async (req, res) => {
   try {
-    const user = await User.findById(req.body.user_id);
+    const user = await User.findById(req.params.user_id);
 
-    const event = await Event.findById(req.body.event_id)
+    const event = await Event.findById(req.params.event_id)
 
     const newAttendees = event.attendees.push(user);
     
