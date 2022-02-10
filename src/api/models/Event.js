@@ -41,9 +41,9 @@ const eventSchema = new Schema({
     is_featured: {
         type: Boolean,
     },
-    featured_photo: {
+    url: {
         type: String
-    }
+    },
 });
 
 export default mongoose.model('Event', eventSchema, "events");
