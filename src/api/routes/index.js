@@ -6,6 +6,7 @@ import mongoose  from 'mongoose';
 import sendEmail from '../utils/email';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
+import dot from "dot-object";
 
 const router = Router();
 
@@ -75,15 +76,6 @@ router.post("/users/validation", async (req, res) => {
         res.send(error);
     }
   });
-
-  router.delete("/events/:id", async (req, res) => {
-    try {
-        const event = await Event.findByIdAndDelete(req.params.id);
-        res.send(event);
-    } catch (error) {
-        res.send(error);
-    }
-});
 
 router.delete("/users/:id", async (req, res) => {
     try {
@@ -200,6 +192,34 @@ router.post("/events/featured", async (req, res) => {
       res.send(event);
   } catch (error) {
       res.send(error);
+  }
+});
+
+router.delete("/events/:id", async (req, res) => {
+  try {
+      const event = await Event.findByIdAndDelete(req.params.id);
+      res.send(event);
+  } catch (error) {
+      res.send(error);
+  }
+});
+
+router.get("/events/:event_id/join/:user_id", async (req, res) => {
+  try {
+    const user = await User.findById(req.body.user_id);
+
+    const event = await Event.findById(req.body.event_id)
+
+    const newAttendees = event.attendees.push(user);
+    
+    console.log(event);
+    console.log(newAttendees);
+
+    const event = await Event.findByIdAndUpdate(req.body.event_id, { attendees: newAttendees});
+
+    res.send(event);
+  } catch(error) {
+    res.send(error)
   }
 });
 
